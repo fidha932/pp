@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+    <form action="{{url_for('forwardaction')}}" method="post">
+    <tr>        
+        <input type="hidden" name="senderid" value="{{uid}}">
+        <th>receivername</th>
+        <td><input type="text" name="receivername"></td>
+    </tr>
+        {% for i in a %}
+        <tr>
+        <th>subject</th>
+        <td><input type="text" name="subject" value="{{i.subject}}"></td>
+        </tr>
+         <tr>
+        <th>message</th>
+        <td><input type="text" name="message" value="{{i.message}}"></td>
+    </tr>
+        {% endfor %}
+        <td><input type="submit" value="send"></td>
+    </form>
+</table>
+</body>
+</html>

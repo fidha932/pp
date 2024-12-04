@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border=2>
+        <tr>
+            <th>username</th>
+            <th>subject</th>
+            <th>message</th>
+            <th>date</th>
+            <th>time</th>
+        </tr>
+        {% for i in a %}
+        <tr>
+            <td>{{i.username}}</td>
+            <td>{{i.subject}}</td>
+            <td>{{i.message}}</td>
+            <td>{{i.date}}</td>
+            <td>{{i.time}}</td>
+            <th><a href="{{url_for('delete',uid=i.id)}}">delete message </a></th>
+            <th><a href="{{url_for('forward',uid=i.id)}}">forward </a></th>
+            <th><a href="{{url_for('replay',uid=i.id)}}">replay </a></th>
+
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

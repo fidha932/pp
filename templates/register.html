@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#username").change(function(){
+                var username=$("#username").val();
+                $.ajax({
+                    url:"{{url_for('checkusername')}}",
+                    data:{'user':username},
+                    success:function(data){
+                        if (data.valid=="exist")
+                        {
+                            alert('username already exist')
+                            $("#username").val('');
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+
+    <form action="{{url_for('reg')}}" method="post">
+        <label for="">name</label>
+        <input type="text" name="name">
+        <br><br>
+        <label for="">age</label>
+        <input type="number" name="age">
+        <br><br>
+        <label for="">address</label>
+        <textarea name="address" id=""></textarea>
+        <br><br>
+        gender <label for="male">male</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="female">female</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="other">other</label>
+        <input type="radio" id="other" name="gender" value="other">
+        <br><br>
+        <label for="">country</label>
+        <input type="text" name="country">
+        <br><br>
+        <label for="">username</label>
+        <input type="text" name="username" id="username">
+        <br><br>
+        <label for="">password</label>
+        <input type="password" name="password">
+        <br><br>
+        <input type="submit" value="register">
+    </form>
+
+    {% if get_flashed_messages() %} {% for msg in get_flashed_messages() %}
+    <script>
+      alert("{{msg}}");
+    </script>
+    {% endfor %} {% endif %}
+
+</body>
+</html>
